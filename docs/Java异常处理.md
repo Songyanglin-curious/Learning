@@ -5,8 +5,10 @@
 ## 学习范围与进度
 
 - 第一批（4.1～4.6）：已讨论异常分类、捕获与传播、手动抛出、异常包装、自定义异常，以及 finally 和资源自动关闭。
-- 第一批待继续：NullPointerException 专题、断言 assert；finally 覆盖原结果、资源关闭失败的细节尚未展开。
-- 第二批（4.7～4.10）：JDK Logging、Commons Logging、Log4j、SLF4J 与 Logback，尚未学习。
+- 第一批补充：已讨论 NullPointerException、自动拆箱的失败位置及断言 assert；对 finally 覆盖原结果、资源关闭失败已有初步了解，暂不深入。
+- 第二批（4.7～4.10）：已讨论日志体系，单独记录在 [Java日志](Java日志.md)。
+
+当前已理解异常的概念和用途，学习重点是 Java 的声明、主动抛出、捕获和常用注意事项；后续按实际使用补充具体写法，不必重复基础概念。
 
 ## 异常从哪里来，发生后怎样执行
 
@@ -58,6 +60,8 @@ static void load() throws IOException {
 throws 不会主动制造异常，也不会把其他异常转换成 IOException。方法可以声明 throws IOException 却正常完成；如果内部发生 NullPointerException，向外传播的仍然是 NullPointerException。
 
 返回类型也不因异常而改变：String 方法成功时返回字符串，抛出异常时则不正常返回。
+
+调用可能抛异常的方法仍用普通调用语法。对于受检异常，当前层可以 try-catch 捕获，也可以在方法上声明 throws 后交给上层；后者不需要 catch 后再次 throw，异常会自动向外传播。
 
 ## 异常类型与受检规则
 
@@ -144,7 +148,7 @@ static void loadWithCleanup() throws IOException {
 }
 ```
 
-finally 负责离开代码块时执行清理，不代表捕获异常。正常结束、return 或异常离开时通常都会执行，但 JVM 被强制终止等情况不能保证。finally 中 return 或抛出新异常可能覆盖原结果，这部分待继续展开。
+finally 负责离开代码块时执行清理，不代表捕获异常。正常结束、return 或异常离开时通常都会执行，但 JVM 被强制终止等情况不能保证。finally 中 return 可能覆盖原返回值或吞掉原异常；抛出新异常可能替换原异常，因此通常只做清理。
 
 文件等资源优先使用 try-with-resources。下面示例另需导入 java.io.BufferedReader。
 
@@ -158,7 +162,7 @@ static String readFirstLine() throws IOException {
 }
 ```
 
-try 后圆括号中的资源需要实现 AutoCloseable；正常返回或异常离开时自动调用 close()。这里可以没有 catch，关闭后异常仍能向外传播。关闭本身也可能失败，其处理机制待继续学习。
+try 后圆括号中的资源需要实现 AutoCloseable；正常返回或异常离开时自动调用 close()。这里可以没有 catch，关闭后异常仍能向外传播。若业务代码和关闭都抛异常，业务异常作为主异常，关闭异常保存在 getSuppressed() 中；若业务代码正常完成、只有关闭失败，关闭异常会向外传播。目前了解这一规则即可。
 
 | Java | C# |
 | --- | --- |
@@ -198,6 +202,53 @@ static void checkBalance(int balance, int amount) {
 选择的关键是是否要强制调用方在代码中交代此类失败，而不是“业务异常固定继承哪一种”。需要包装原异常时，自定义异常也应提供接收 cause 的构造方法并传给父类。
 
 无需为每条错误消息建立异常类。调用方需要区分处理，或失败本身有明确稳定的含义时，自定义类型才更有价值；普通参数错误通常可用 IllegalArgumentException。
+
+## NullPointerException 与自动拆箱
+
+null 表示引用没有指向对象，可以存储、传递和比较。需要使用对象却拿到 null 时，会发生 NullPointerException（NPE），例如对 null 调用实例方法。
+
+自动拆箱也需要对象，因此即使没有显式调用方法，也可能发生 NPE。关键是看哪里要求把包装类型转换成基本类型：
+
+```java
+static int getScore() {
+    Integer score = null;
+    return score; // 返回类型要求 int，在方法内部拆箱，发生 NPE
+}
+```
+
+若返回类型改为 Integer，方法可以正常返回 null；调用方执行 int result = getScore(); 时，才会在调用方拆箱并发生 NPE。拆箱可理解为隐含调用 score.intValue()。
+
+异常源头是实际执行失败操作的位置，随后沿调用链传播；调用方接到异常不代表源头在调用方。
+
+处理方式取决于 null 是否有合理含义：
+
+- 允许缺失的数据：显式判断 null，并实现默认值等行为。
+- 必须存在的参数：可以用 java.util.Objects.requireNonNull(name, "name 不能为空") 在入口立即拒绝；它仍抛出 NPE，作用是尽早指出约定被违反。
+- 内部逻辑意外产生 null：排查产生 null 的位置并修正逻辑。
+
+通常不通过 catch (NullPointerException e) 实现默认值，否则可能掩盖 try 内其他位置的程序错误。
+
+## assert 断言
+
+断言用于检查开发者认为按内部逻辑应当成立的条件，概念与其他语言中的断言基本一致。
+
+```java
+assert distance >= 0;
+assert distance >= 0 : "距离不应为负数，实际为：" + distance;
+```
+
+启用时，条件为 false 会抛出 AssertionError；冒号后的失败说明仅在条件失败时求值。AssertionError 属于 Error，catch (Exception e) 捕获不到，通常应修复逻辑而非捕获后继续业务。
+
+Java 断言默认关闭，可在运行时通过 java -ea Demo 启用。关闭时，条件和失败说明都不会求值，所以：
+
+- 不能代替必须执行的参数校验或业务判断，这些应使用 if 和 throw。
+- 条件中不能放扣款等程序正常运行所依赖的操作，否则关闭断言后操作不会执行。
+
+测试框架的 assertEquals 等断言方法通常不受 JVM 的 -ea 开关控制。
+
+## 日志注意事项
+
+避免每层都打印同一个异常后再抛出，导致一次故障重复记录。通常由最终处理失败的边界统一记录；中间层需要补充含义时，包装异常并保留 cause。具体日志体系见 [Java日志](Java日志.md)。
 
 ## 与 C#、JavaScript 对照
 
