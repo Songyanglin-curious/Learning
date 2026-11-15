@@ -4,6 +4,10 @@
 > 作为未来 AGENTS 接手本项目时的行动指南；它是人类可读的投影，不是 system prompt 的完整注入内容。
 > 新会话只注入有界的 Hot Memory，完整历史通过 memoir_read 按需检索。
 
+## 当前归档约定（2026-11-14 更新）
+
+Java 资料已统一归入领域目录：笔记为 `Java/notes/`，实验为 `Java/examples/`；当前入口为 [Java 索引](Java/index.md)，状态以 [进度快照](Java/progress.md)为准。下方历史记录中的根目录 `docs/`、`Java/docs/` 路径和存放约定已经失效，对应笔记现位于 `Java/notes/`，不得据旧记录恢复分散目录。历史实验及会话记录保留原貌，不代表本次重新验证。
+
 ## 工作记录 Work Log
 
 - [2026-11-02 13:41] [工作记录] 集合扫盲示例已建并验证运行（02-collection-intro/Basics.java） — 在 Java/examples/02-collection-intro/Basics.java 写了扫盲级示例，覆盖数组定长、List 可变长可重复、Set 去重（第二次 add 返回 false）、Map 按 key 取值（取不到返回 null）。用 D:\ProgrameFiles\JDK\ms-17.0.18 编译运行通过，实测输出：数组长度：3 / List：[小明, 小红, 小明]，大小 3 / Set：[小明, 小红]，第二次 add 返回 false / Map 查小明：92 / Map 查小刚：null。示例命名沿用 examples/NN-主题/ 目录约定。尚未整理成 docs 笔记，是否写成 docs/Java集合入门.md 待用户决定。
