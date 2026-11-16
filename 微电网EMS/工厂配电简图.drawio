@@ -1,0 +1,19 @@
+<mxGraphModel adaptiveColors="auto"><root><mxCell id="0"/><mxCell id="1" parent="0"/>
+<mxCell id="grid" value="公共电网" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1"><mxGeometry x="220" y="40" width="200" height="60" as="geometry"/></mxCell>
+<mxCell id="tx" value="变压器 1600 kVA&#xa;承担全厂净 P、净 Q" style="rounded=1;whiteSpace=wrap;html=1;fontSize=15;fillColor=#dae8fc;" vertex="1" parent="1"><mxGeometry x="220" y="150" width="200" height="70" as="geometry"/></mxCell>
+<mxCell id="bus" value="工厂交流母线（三相 400 V）" style="whiteSpace=wrap;html=1;fontSize=16;fillColor=#dae8fc;strokeWidth=3;" vertex="1" parent="1"><mxGeometry x="40" y="280" width="560" height="40" as="geometry"/></mxCell>
+<mxCell id="load" value="负荷支路开关" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1"><mxGeometry x="40" y="390" width="160" height="50" as="geometry"/></mxCell>
+<mxCell id="pv" value="光伏支路开关" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1"><mxGeometry x="240" y="390" width="160" height="50" as="geometry"/></mxCell>
+<mxCell id="ess" value="储能支路开关及线路&#xa;持续电流限值：800 A" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#fff2cc;" vertex="1" parent="1"><mxGeometry x="440" y="390" width="160" height="60" as="geometry"/></mxCell>
+<mxCell id="l" value="工厂负荷&#xa;980 kW / 735 kvar" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1"><mxGeometry x="40" y="510" width="160" height="70" as="geometry"/></mxCell>
+<mxCell id="p" value="光伏及逆变器&#xa;发电 400 kW" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#d5e8d4;" vertex="1" parent="1"><mxGeometry x="240" y="510" width="160" height="70" as="geometry"/></mxCell>
+<mxCell id="s" value="PCS + 电池&#xa;充电 / 放电" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fillColor=#fff2cc;" vertex="1" parent="1"><mxGeometry x="440" y="510" width="160" height="70" as="geometry"/></mxCell>
+<mxCell id="e1" edge="1" parent="1" source="grid" target="tx" style="endArrow=none;html=1;strokeWidth=2;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e2" edge="1" parent="1" source="tx" target="bus" style="endArrow=none;html=1;strokeWidth=2;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e3" edge="1" parent="1" source="bus" target="load" style="endArrow=none;html=1;exitX=0.143;exitY=1;entryX=0.5;entryY=0;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e4" edge="1" parent="1" source="bus" target="pv" style="endArrow=none;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e5" edge="1" parent="1" source="bus" target="ess" style="endArrow=none;html=1;exitX=0.857;exitY=1;entryX=0.5;entryY=0;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e6" edge="1" parent="1" source="load" target="l" style="endArrow=none;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e7" edge="1" parent="1" source="pv" target="p" style="endArrow=none;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e8" edge="1" parent="1" source="ess" target="s" style="endArrow=none;html=1;"><mxGeometry relative="1" as="geometry"/></mxCell>
+</root></mxGraphModel>
