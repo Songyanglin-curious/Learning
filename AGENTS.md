@@ -2,9 +2,9 @@
 
 本项目用于长期、系统性地学习不同领域的知识，当前领域由 `index.md` 导航。开始项目工作前，先阅读 `index.md`。
 
-按当前任务进入领域索引，只按需读取该领域的 `plan.md`、`progress.md` 和直接相关资料，不一次加载全部笔记。学习方向以领域计划为准，当前状态与接续位置以领域进度为准。持续学习及资料维护使用 `learning-coach` Skill；资料按领域归档：Java 笔记统一存放于 `Java/notes/`，实验代码存放于 `Java/examples/`，由领域索引导航；不要在根目录另建 Java 专题资料目录。
+按当前任务进入领域索引，只按需读取该领域的 `plan.md`、`progress.md` 和直接相关资料，不一次加载全部笔记。学习方向以领域计划为准，当前状态与接续位置以领域进度为准。在 Codex 中持续学习及资料维护使用 `agent-learn` Skill；需要深入教学、练习或评估时可结合 `learning-coach` Skill。资料按领域归档：Java 笔记统一存放于 `Java/notes/`，实验代码存放于 `Java/examples/`，由领域索引导航；不要在根目录另建 Java 专题资料目录。
 
-持续学习已接入 agent-learn：从根索引进入当前领域，优先复用现有资料；初始化、教学接续和维护分别使用 `agent_learn_rules` 的 `init`、`teaching`、`maintain` 入口按需读取规则。工作区启用标记为 `.agent-learn.json`，不为接入重复创建计划或进度。
+持续学习已接入 agent-learn：从根索引进入当前领域，优先复用现有资料；DSH 中使用 `agent_learn_rules` 的 `init`、`teaching`、`maintain` 入口，Codex 中使用 `agent-learn` Skill 及其规则。工作区启用标记为 `.agent-learn.json`，不为接入重复创建计划或进度。
 
 ## 学习重心
 
