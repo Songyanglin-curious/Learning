@@ -5,6 +5,8 @@
 | 资料 | 内容摘要 | 使用场景 |
 | --- | --- | --- |
 | [Hello](01-hello/Hello.java) | 第一个 Java 程序 | 检查最基本的编译、启动与输出过程 |
+| [纯 JDK 测试入口](03-unit-test/CalculatorTest.java)与[业务代码](03-unit-test/Calculator.java) | 不使用 IDE、构建工具或 JUnit，由 main 调用测试并用 if / throw 验证结果 | 在该目录执行 `javac -encoding UTF-8 Calculator.java CalculatorTest.java`，再执行 `java -cp . CalculatorTest`；观察业务调用、断言失败与程序退出 |
+| [JUnit 命令行环境](03-unit-test/运行说明.md) | 独立 JAR、无 main 的测试类、原始编译与运行命令 | 不用 IDE 或构建工具，对照 JUnit 怎样组织测试；JDK 17 下由 AI 实测两个测试通过 |
 | [集合实验导航](../notes/Java集合.md) | 笔记中的配套实验表说明集合示例的用途和必要参数 | 按判等、只读与视图、容器实现和哈希机制等疑问定位代码 |
 | [集合基础示例](02-collection-intro/Basics.java) | 数组与 List、Set、Map 的基本行为 | 对照几种容器的能力 |
 | [只读与视图](02-collection-intro/ReadOnlyForms.java) | 固定大小列表、不可修改包装与视图行为 | 验证修改限制和底层共享 |
