@@ -6,7 +6,7 @@
 
 ## 当前归档约定（2026-11-14 更新）
 
-Java 资料已统一归入领域目录：笔记为 `Java/notes/`，实验为 `Java/examples/`；当前入口为 [Java 索引](Java/index.md)，状态以 [进度快照](Java/progress.md)为准。下方历史记录中的根目录 `docs/`、`Java/docs/` 路径和存放约定已经失效，对应笔记现位于 `Java/notes/`，不得据旧记录恢复分散目录。历史实验及会话记录保留原貌，不代表本次重新验证。
+Java 资料已统一归入领域目录：笔记为 `Java/notes/`，实验为 `Java/examples/`；当前入口为 [Java 索引](Java/index.md)，状态以 [进度](Java/进度.md)为准。下方历史记录中的根目录 `docs/`、`Java/docs/` 路径和存放约定已经失效，对应笔记现位于 `Java/notes/`，不得据旧记录恢复分散目录。历史实验及会话记录保留原貌，不代表本次重新验证。
 
 ## 工作记录 Work Log
 

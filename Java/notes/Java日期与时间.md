@@ -144,4 +144,4 @@ Date legacyDate = Date.from(instant);
 - [廖雪峰 Java 教程：日期与时间](https://liaoxuefeng.com/books/java/datetime/index.html)：主要学习参考。
 - [Java 官方文档：java.time](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/time/package-summary.html)：核对具体类型和行为；实际使用以项目 JDK 为准。
 - [专题计划与讨论记录](Java日期与时间学习计划.md)：查看覆盖范围和教学接续背景。
-- [当前进度](../progress.md)：继续学习的统一入口。
+- [进度](../进度.md)：继续学习的统一入口。
