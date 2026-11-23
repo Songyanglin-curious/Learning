@@ -12,6 +12,8 @@
 | [只读与视图](02-collection-intro/ReadOnlyForms.java) | 固定大小列表、不可修改包装与视图行为 | 验证修改限制和底层共享 |
 | [判等示例](02-collection-intro/EqualsDemo.java) | equals 与 hashCode 的不同组合 | 检查内容判等与哈希去重的关系 |
 | [接口与代价](02-collection-intro/AbstractionTrap.java) | 同一 List 接口在不同实现上的访问代价 | 理解接口能力与实现成本的区别 |
+| [线程启动与等待](04-thread-start-join/Main.java) | 用 `start()` 启动子线程，用 `join()` 等待子线程结束 | 按[运行说明](04-thread-start-join/运行说明.md)执行，观察两个线程的输出顺序 |
+| [线程安全实验](05-thread-safety/运行说明.md) | 丢失更新、坐标中间状态、普通字段与 volatile 字段对照 | 按问题选择对应的 Java 文件运行 |
 
 运行前阅读对应代码和笔记。部分反射实验需要 `--add-opens=java.base/java.util=ALL-UNNAMED`；具体要求见主要笔记的实验表。性能数字受环境、预热和测量方法影响，不作为严谨基准结论。
 
